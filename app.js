@@ -23,25 +23,23 @@ const server = http.createServer((req,res)=> {
             body.push(chunk);
         })
 
-        req.on('end', () => {
+        return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
-            console.log(parsedBody);
-        })
-
-        fs.writeFileSync('message.txt', 'Dummy');
-
-        res.statusCode=302;
-
-        res.setHeader('Location','/');
-
-        return res.end();
+            const message = parsedBody.split('=')[1];
+            fs.writeFile('message.txt', message, err => {
+                res.statusCode=302;
+                res.setHeader('Location','/');
+                return res.end();
+    
+            });
+        });
     }
    res.setHeader('Content-Type','text/html');
    res.write('<html>');
    res.write('<head><title>My First Page</title></head>')
    res.write('<body><h1>Hello</h1></body>')
    res.write('</html>')
-   res.end();
+    res.end();
 });
 
 server.listen(3000);
