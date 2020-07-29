@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
-
+const expressHbs=require('express-handlebars')
 const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const rootDir = require("./util/path");
@@ -11,8 +11,8 @@ const rootDir = require("./util/path");
 //     next();                              //Allows the request to comtinue to next middleware in line
 // });
 
-
-app.set('view engine', 'pug'); // Use PUG engine to combine dynamic template
+app.engine('hbs',expressHbs({layoutsDir:'views/layouts/',defaultLayout:'main-layout',extname:'hbs'}));
+app.set('view engine', 'hbs'); // Use PUG engine to combine dynamic template
 app.set('views','views'); //Where to find these templates , views is the directory name .
 
 app.use(bodyParser.urlencoded({ extended: false }));
