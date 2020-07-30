@@ -11,8 +11,8 @@ const rootDir = require("./util/path");
 //     next();                              //Allows the request to comtinue to next middleware in line
 // });
 
-app.engine('hbs',expressHbs({layoutsDir:'views/layouts/',defaultLayout:'main-layout',extname:'hbs'}));
-app.set('view engine', 'hbs'); // Use PUG engine to combine dynamic template
+// app.engine('hbs',expressHbs({layoutsDir:'views/layouts/',defaultLayout:'main-layout',extname:'hbs'})); Handlebar registration
+app.set('view engine', 'ejs'); // Use PUG engine to combine dynamic template
 app.set('views','views'); //Where to find these templates , views is the directory name .
 
 app.use(bodyParser.urlencoded({ extended: false }));
