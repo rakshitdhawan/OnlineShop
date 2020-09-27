@@ -48,6 +48,11 @@ form {
   padding: 0;
 }
 
+.image{
+  height:35rem
+}
+
+
 .main-header__item a {
   text-decoration: none;
   color: white;
